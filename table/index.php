@@ -25,7 +25,3 @@ foreach ( $database_array as $row_array ) {
 }
 
 echo $twig->render( 'base.twig', $result_array );
-
-
-
-

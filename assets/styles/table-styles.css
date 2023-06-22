@@ -13,17 +13,21 @@ html {
 
 body {
     margin: 5% 10% 5% 10%;
+    overflow-x: auto;
 }
 
 .table-wrapper {
-    display: flex;
-    justify-content: center;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    overflow-x: auto;
+    width: 100%;
 
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
+    min-width: 800px;
 }
 
 td, th {
