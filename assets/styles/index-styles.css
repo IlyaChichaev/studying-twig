@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #414e52;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100vh;
+}
+
+.button {
+    margin: 0;
+    display: flex;
+    border: 2px solid #879BA7;
+    border-radius: 10px;
+    min-width: 150px;
+    min-height: 150px;
+    justify-content: center;
+    align-items: center;
+    background-color: #a6cade;
+}
+
+.button:hover {
+    background-color: #367190;
+    color: #e0f5ff;
+}

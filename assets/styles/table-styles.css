@@ -1,0 +1,54 @@
+@import "fonts.css";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: black;
+}
+
+body {
+    margin: 5% 10% 5% 10%;
+}
+
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    padding: 5px;
+    border: 1px solid #999;
+    max-width: 200px;
+    text-align: center;
+}
+
+td:nth-child(3) {
+    text-align: left;
+}
+
+td:nth-child(3n) {
+    min-width: 100px;
+}
+
+th {
+    background-color: #ddf;
+}
+
+tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
