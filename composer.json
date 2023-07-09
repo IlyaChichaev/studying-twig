@@ -3,6 +3,7 @@
     "twig/twig": "^3.0",
     "slim/slim": "4.*",
     "slim/psr7": "^1.6",
-    "ext-mysqli": "*"
+    "ext-mysqli": "*",
+    "nikic/fast-route": "^1.3"
   }
 }

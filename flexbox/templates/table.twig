@@ -1,0 +1,17 @@
+<div class="flex-wrapper">
+    <div class="flex-container">
+        <div class="flex-row">
+            <div class="flex-item first-row size-1">ID</div>
+            <div class="flex-item first-row size-1">Code</div>
+            <div class="flex-item first-row size-2">Name</div>
+            <div class="flex-item first-row size-1">Nominal</div>
+            <div class="flex-item first-row size-1">Rate</div>
+            <div class="flex-item first-row size-2">Date</div>
+        </div>
+
+        {% for row in table-rows %}
+            {{ row|raw }}
+        {% endfor %}
+
+    </div>
+</div>

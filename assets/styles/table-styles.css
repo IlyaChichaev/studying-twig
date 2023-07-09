@@ -12,13 +12,11 @@ html {
 }
 
 body {
-    margin: 5% 10% 5% 10%;
+    margin: 5%;
     overflow-x: auto;
 }
 
 .table-wrapper {
-    /*display: flex;*/
-    /*justify-content: center;*/
     overflow-x: auto;
     width: 100%;
 
@@ -27,7 +25,7 @@ body {
 table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 800px;
+    min-width: 700px;
 }
 
 td, th {
@@ -41,10 +39,6 @@ td:nth-child(3) {
     text-align: left;
 }
 
-td:nth-child(3n) {
-    min-width: 100px;
-}
-
 th {
     background-color: #ddf;
 }
@@ -55,4 +49,8 @@ tr:nth-child(even) {
 
 tr:nth-child(odd) {
     background-color: white;
+}
+
+.text {
+    color: white;
 }
