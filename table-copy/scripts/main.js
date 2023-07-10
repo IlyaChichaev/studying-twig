@@ -43,7 +43,7 @@ function sort_table(column_sort) {
 function change_attribute(column_sort) {
   let cell_sort = document.querySelectorAll("TH");
   if (cell_sort[column_sort].hasAttribute("data-sort")) {
-    if (cell_sort[column_sort].getAttribute("data-sort") == "1") {
+    if (cell_sort[column_sort].getAttribute("data-sort") === "1") {
       cell_sort[column_sort].setAttribute("data-sort", "-1");
     } else cell_sort[column_sort].setAttribute("data-sort", "1");
   }
