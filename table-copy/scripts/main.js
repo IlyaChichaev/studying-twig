@@ -1,47 +1,50 @@
 "use strict";
 
-let start_t = new Date().getTime() / 1000;
+function sort_table(column_sort) {
+  let table = document.querySelector("tbody"),
+    rows = table.rows,
+    table_array = [],
+    array_inside = [];
 
-const table_column = 1;
-const k = -1;
-
-function compaireRows(row1, row2) {
-  if (!isNaN(Number(row1[table_column]))) {
-    return k * Number(row1[table_column]) - k * Number(row2[table_column]);
-  } else return row1[table_column] > row2[table_column] ? 1 * k : -1 * k;
-}
-
-let table = document.querySelector("tbody");
-let lst = [],
-  lst_into = [],
-  rows = table.rows;
-
-for (let row of table.rows) {
-  lst_into = [];
-  for (let item of row.children) {
-    lst_into.push(item.innerHTML);
+  for (let row of rows) {
+    array_inside = [];
+    for (let item of row.children) {
+      array_inside.push(item.innerHTML);
+    }
+    table_array.push(array_inside);
   }
-  lst.push(lst_into);
-}
 
-let first_row = lst.shift();
-lst.sort(compaireRows);
-lst.unshift(first_row);
+  let i = 0,
+    first_row = table_array.shift(),
+    sort_direction = document.querySelectorAll("TH")[column_sort].getAttribute("data-sort");
 
-console.log(lst);
-
-let i = 0;
-for (let row of table.rows) {
-  let j = 0;
-  for (let item of row.children) {
-    item.outerHTML = lst[i][j];
-    j++;
+  function compareRows(row1, row2) {
+    let a = row1[column_sort],
+      b = row2[column_sort];
+    if (!isNaN(Number(a)) || !isNaN(Number(b))) {
+      return sort_direction * Number(a) - sort_direction * Number(b);
+    } else return a > b ? 1 * sort_direction : -1 * sort_direction;
   }
-  i++;
-}
-console.log(i);
 
-let end_t = new Date().getTime() / 1000;
-console.log("End time:", end_t);
-console.log("Start time:", start_t);
-console.log(end_t - start_t);
+  table_array.sort(compareRows);
+  table_array.unshift(first_row);
+
+  for (let row of rows) {
+    let j = 0;
+    for (let item of row.children) {
+      item.innerHTML = table_array[i][j];
+      j++;
+    }
+    i++;
+  }
+  change_attribute(column_sort);
+}
+
+function change_attribute(column_sort) {
+  let cell_sort = document.querySelectorAll("TH");
+  if (cell_sort[column_sort].hasAttribute("data-sort")) {
+    if (cell_sort[column_sort].getAttribute("data-sort") == "1") {
+      cell_sort[column_sort].setAttribute("data-sort", "-1");
+    } else cell_sort[column_sort].setAttribute("data-sort", "1");
+  }
+}

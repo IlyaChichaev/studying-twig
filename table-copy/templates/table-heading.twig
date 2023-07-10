@@ -1,5 +1,5 @@
     <tr>
     {% for heading_name in table_heading %}
-        <th>{{ heading_name|raw }}</th>
+        <th onclick="sort_table({{ loop.index - 1 }})", data-sort="-1">{{ heading_name|raw }}</th>
     {% endfor %}
     </tr>
