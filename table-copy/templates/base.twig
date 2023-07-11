@@ -9,7 +9,7 @@
 <body>
 <div class="table-wrapper">
     <table id='main_table'>
-        {{ heading_row|raw }}
+        {{ heading_rows|raw }}
         {% for row in table_row %}
             {{ row|raw }}
         {% endfor %}

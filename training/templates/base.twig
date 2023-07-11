@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table_copy</title>
+    {#    <link rel="stylesheet" href="../assets/styles/table-styles.css"> #}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div>
+    {% for key, value in arr %}
+        {% if key == 'key2' %}
+            {{ key }} - There is array into this key<br>
+        {% elseif key != 'key2' and value is iterable %}
+            {% for item in value %}
+                {{ key }} - {{ item }}<br>
+            {% endfor %}
+        {% else %}
+            {{ key }} - {{ value }}<br>
+        {% endif %}
+    {% endfor %}
+</div>
+</body>
+</html>
