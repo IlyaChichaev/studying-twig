@@ -44,10 +44,64 @@ function sort_table ( column_sort ) {
 }
 
 function change_attribute ( column_sort ) {
-    let cell_sort = document.querySelectorAll ( "TH" );
-    if ( cell_sort[ column_sort ].hasAttribute ( "data-sort" ) ) {
-        cell_sort[ column_sort ].getAttribute ( "data-sort" ) === "1"
-        ? cell_sort[ column_sort ].setAttribute ( "data-sort" , "-1" )
-        : cell_sort[ column_sort ].setAttribute ( "data-sort" , "1" );
+
+    let head_row  = document.querySelectorAll ( "TH" ) ,
+        cell_sort = head_row [ column_sort ];
+
+    function change_arrow ( data_sort ) {
+
+        function changeArrowInOtherCells () {
+            for ( let i = 0; i < head_row.length; i++ ) {
+                if ( i === column_sort ) {
+                    continue;
+                }
+                head_row[ i ].innerHTML = head_row[ i ].innerHTML.replace ( "do" , "no" );
+                head_row[ i ].innerHTML = head_row[ i ].innerHTML.replace ( "up" , "no" );
+                head_row[ i ].setAttribute ( "data-sort" , "1" );
+            }
+        }
+
+
+        switch ( data_sort ) {
+            case "-1":
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "do" , "up" );
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "do" );
+                changeArrowInOtherCells ();
+                break;
+            case "1":
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "up" , "do" );
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "do" );
+                changeArrowInOtherCells ();
+                break;
+            default:
+                cell_sort.setAttribute ( "data-sort" , "1" );
+                changeArrowInOtherCells ();
+                break;
+        }
+        // if ( cell_sort.innerHTML.includes ( "up" ) ) {
+        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "up" , "do" );
+        //     changeArrowInOtherCells ()
+        // }
+        // else if ( cell_sort.innerHTML.includes ( "do" ) ) {
+        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "do" , "up" );
+        //     changeArrowInOtherCells ()
+        // }
+        // else if ( cell_sort.innerHTML.includes ( "no" ) ) {
+        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "up" );
+        //     changeArrowInOtherCells ()
+        // }
+
+    }
+
+    if ( cell_sort.hasAttribute ( "data-sort" ) ) {
+        let data_sort = cell_sort.getAttribute ( "data-sort" );
+        if ( data_sort === "1" ) {
+            cell_sort.setAttribute ( "data-sort" , "-1" );
+        }
+        else if ( data_sort === "-1" ) {
+            cell_sort.setAttribute ( "data-sort" , "1" );
+        }
+
+        change_arrow ( data_sort );
     }
 }

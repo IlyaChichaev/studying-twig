@@ -14,9 +14,9 @@
             {% if key == 'heading_rows' %}
                 {% for heading_name in rows %}
                     {% if loop.index == 1 %}
-                        <th onclick="sort_table({{ loop.index - 1 }})" , data-sort="-1">{{ heading_name|raw }}</th>
+                        <th onclick="sort_table({{ loop.index - 1 }})" , data-sort="-1">{{ heading_name|raw }} do</th>
                     {% else %}
-                        <th onclick="sort_table({{ loop.index - 1 }})" , data-sort="1">{{ heading_name|raw }}</th>
+                        <th onclick="sort_table({{ loop.index - 1 }})" , data-sort="1">{{ heading_name|raw }} no</th>
                     {% endif %}
                 {% endfor %}
             {% else %}
