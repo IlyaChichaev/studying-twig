@@ -1,6 +1,11 @@
 "use strict";
 
-function sort_table ( column_sort ) {
+
+/**
+ * Sorts the table by the chosen column
+ * @param {number} column_sort - the selected column to sort the table
+ */
+function sortTable ( column_sort ) {
     let table        = document.querySelector ( "tbody" ) ,
         rows         = table.rows ,
         table_array  = [] ,
@@ -17,6 +22,12 @@ function sort_table ( column_sort ) {
     let first_row      = table_array.shift () ,
         sort_direction = document.querySelectorAll ( "TH" )[ column_sort ].getAttribute ( "data-sort" );
 
+    /**
+     * Callback function for the sort() method
+     * @param {array} row1 - the first line for comparison
+     * @param {array} row2 - the second line for comparison
+     * @returns {number} - returns 1 or -1 for sort() method
+     */
     function compareRows ( row1 , row2 ) {
         let row1Element = row1[ column_sort ] ,
             row2Element = row2[ column_sort ];
@@ -40,57 +51,54 @@ function sort_table ( column_sort ) {
         }
         i++;
     }
-    change_attribute ( column_sort );
+    changeAttributeAndArrow ( column_sort );
 }
 
-function change_attribute ( column_sort ) {
+/**
+ * Changes the attribute 'data-sort' of <th> and all
+ * @param {number}column_sort - the selected column to sort the table
+ */
+function changeAttributeAndArrow ( column_sort ) {
 
     let head_row  = document.querySelectorAll ( "TH" ) ,
         cell_sort = head_row [ column_sort ];
 
-    function change_arrow ( data_sort ) {
+    /**
+     * Changes symbols of the sorting direction
+     * @param {string}data_sort - the <th> attribute (takes the value '1' or '-1')
+     */
+    function changeArrow ( data_sort ) {
 
-        function changeArrowInOtherCells () {
+        /**
+         * Sets the "without sorting" symbol in all heading cells of the table
+         */
+        function setArrowWithoutSoring () {
             for ( let i = 0; i < head_row.length; i++ ) {
                 if ( i === column_sort ) {
                     continue;
                 }
-                head_row[ i ].innerHTML = head_row[ i ].innerHTML.replace ( "do" , "no" );
+                head_row[ i ].innerHTML = head_row[ i ].innerHTML.replace ( "dn" , "no" );
                 head_row[ i ].innerHTML = head_row[ i ].innerHTML.replace ( "up" , "no" );
                 head_row[ i ].setAttribute ( "data-sort" , "1" );
             }
         }
 
-
         switch ( data_sort ) {
             case "-1":
-                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "do" , "up" );
-                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "do" );
-                changeArrowInOtherCells ();
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "dn" , "up" );
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "dn" );
+                setArrowWithoutSoring ();
                 break;
             case "1":
-                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "up" , "do" );
-                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "do" );
-                changeArrowInOtherCells ();
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "up" , "dn" );
+                cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "dn" );
+                setArrowWithoutSoring ();
                 break;
             default:
                 cell_sort.setAttribute ( "data-sort" , "1" );
-                changeArrowInOtherCells ();
+                setArrowWithoutSoring ();
                 break;
         }
-        // if ( cell_sort.innerHTML.includes ( "up" ) ) {
-        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "up" , "do" );
-        //     changeArrowInOtherCells ()
-        // }
-        // else if ( cell_sort.innerHTML.includes ( "do" ) ) {
-        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "do" , "up" );
-        //     changeArrowInOtherCells ()
-        // }
-        // else if ( cell_sort.innerHTML.includes ( "no" ) ) {
-        //     cell_sort.innerHTML = cell_sort.innerHTML.replace ( "no" , "up" );
-        //     changeArrowInOtherCells ()
-        // }
-
     }
 
     if ( cell_sort.hasAttribute ( "data-sort" ) ) {
@@ -102,6 +110,6 @@ function change_attribute ( column_sort ) {
             cell_sort.setAttribute ( "data-sort" , "1" );
         }
 
-        change_arrow ( data_sort );
+        changeArrow ( data_sort );
     }
 }
