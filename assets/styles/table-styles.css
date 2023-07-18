@@ -41,6 +41,7 @@ td:nth-child(3) {
 
 th {
     background-color: #ddf;
+    cursor: pointer;
 }
 
 tr:nth-child(even) {

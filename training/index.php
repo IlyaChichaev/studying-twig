@@ -8,7 +8,7 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 include '../vendor/autoload.php';
-include "../database.php";
+include "../Database.php";
 
 $loader = new FilesystemLoader( 'templates' );
 $twig   = new Environment( $loader );

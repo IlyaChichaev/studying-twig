@@ -6,12 +6,11 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 include '../vendor/autoload.php';
-include "../database.php";
 
 $loader = new FilesystemLoader( 'templates' );
 $twig   = new Environment( $loader );
 
-$database       = new Database();
+$database       = new MyDatabase\Database();
 $database_array = $database->get_currencies_list();
 
 $table_array['table_heading'] = array_keys( (array) $database_array[0] );

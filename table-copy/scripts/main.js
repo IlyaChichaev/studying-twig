@@ -9,14 +9,14 @@ function sortTable ( column_sort ) {
     let table        = document.querySelector ( "tbody" ) ,
         rows         = table.rows ,
         table_array  = [] ,
-        array_inside = [];
+        table_row = [];
 
     for ( let row of rows ) {
-        array_inside = [];
+        table_row = [];
         for ( let item of row.children ) {
-            array_inside.push ( item.innerHTML );
+            table_row.push ( item.innerHTML );
         }
-        table_array.push ( array_inside );
+        table_array.push ( table_row );
     }
 
     let first_row      = table_array.shift () ,
@@ -60,7 +60,7 @@ function sortTable ( column_sort ) {
  */
 function changeAttributeAndArrow ( column_sort ) {
 
-    let head_row  = document.querySelectorAll ( "TH" ) ,
+    let head_row  = document.querySelectorAll ( "th" ) ,
         cell_sort = head_row [ column_sort ];
 
     /**
